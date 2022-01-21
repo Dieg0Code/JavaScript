@@ -22,3 +22,54 @@ JavaScript puede ser usado en:
 4. Videojuegos.
 5. Aplicaciones móviles.
 6. Aplicaciones de escritorio.
+
+## Introducción a JavaScript
+
+### Variables y comentarios
+
+Los comentarios son líneas de código que el intérprete de JavaScript ignorará a la hora de ejecutar el código, son usados para explicar el código o para dejar mensajes a futuros desarrolladores.
+
+Los comentarios pueden ser de dos tipos:
+
+    // Comentario de una línea
+    /* Comentario de varias líneas */
+
+
+
+Las variables no son mas que un contenedor de información que apunta a un lugar en memoria. Dicha información puede cambiar en el futuro.
+
+```javascript
+let nombre = "Diego";
+var edad = 25;
+const PI = 3.1416;
+```
+
+Lo que hace JavaScript es tomar el valor a la derecha del signo igual `=` y asignarlo al nombre de la variable a la izquierda. Cada vez que necesitemos el valor, podemos llamarlo nombrando a la variable.
+
+Existen diferencias entre declarar variables con `var`, `let` y `const`. Con `const` no podemos reasignar el valor de la variable, pero con `let` y `var` podemos.
+
+`var` era la forma antigua de declarar variables, actualmente no se usa ya que traía varios problemas, actualmente se prefiere usar `let` y `const`. Sin embargo podemos seguir usando `var` si queremos ya que JavaScript es retrocompatible, es decir que podemos usar código de versiones anteriores del lenguaje.
+
+### Versiones de JavaScript
+
+- 1996: LiveScript a JavaScript (estándar).
+- 1997: ES1 (ECMAScript 1).
+- 2009: ES5 (ECMAScript 5) Con muchas características nuevas.
+- 2015: ES6 (ECMAScript 6) Que fue la actualización más grande del lenguaje hasta el momento.
+- 2015: Se estableció que se lanzaría una nueva versión nueva del lenguaje cada año, con pequeñas mejoras.
+
+### ¿Qué versión debo usar?
+
+- ES5:
+  - Soportada en todos los navegadores web.
+
+Es la versión más extendida del lenguaje, usualmente cuando queremos la mayor compatibilidad usamos esta versión.
+
+- ES6/ES2015, ES7/ES2016, ES8/ES2017:
+  - Soportados por la mayoría de los navegadores web modernos.
+  - Pero perdemos compatibilidad con los navegadores antiguos.
+  - Muchas características pueden ser implementadas con `polyfill`s.
+
+### Polyfill
+
+Es un código que provee el funcionamiento de una característica de JavaScript (ES5), en versiones viejas como ES5.
