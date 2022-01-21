@@ -9,3 +9,16 @@ La persona que creó inicialmente el lenguaje fue `Brendan Eich` el cual era un 
 `Microsoft` al ver que también tenían la necesidad de un lenguaje para el cliente, decidieron copiar `JavaScript` y le llamaron a su nueva versión `JScript`, pero era básicamente lo mismo. `Netscape` sin animo de entrar en una guerra de tecnologías, decidió estandarizar el lenguaje, de forma que en 1997 se envió la especificación del lenguaje a la asociación europea de fabricantes de computadoras o mas conocida como `ECMA` (European Computer Manufacturers Association).
 
 `ECMA` creó un comité para estandarizar el lenguaje de script multiplataforma, sin importar la empresa que lo usara, ese comité fue el `ECMA TC39` y se creó el `ECMA-262`, el cual se definió por primera vez como el lenguaje de `ECMAScript`, por eso hay muchos programadores que prefieren referirse a este lenguaje como `ECMAScript`, pero realmente, `JavaScript` no es más que la implementación que realizó la empresa `Netscape` del estándar `ECMAScript`.
+
+## Usos de JavaScript
+
+Hoy en dia `JavaScript` es prácticamente un monopolio, no importa que lenguaje esté corriendo en el servidor, si quieres crear una aplicación web, en el 99% de los casos, usarás `JavaScript`. En un principio este lenguaje se acotaba unicamente al navegador web, pero hoy en dia con tecnologías como `Node.js` puede ejecutarse en el servidor, y en prácticamente cualquier lugar.
+
+JavaScript puede ser usado en:
+
+1. Aplicaciones web.
+2. Crear presentaciones interactivas (Reveal.js).
+3. Web Servers con Node.js.
+4. Videojuegos.
+5. Aplicaciones móviles.
+6. Aplicaciones de escritorio.
