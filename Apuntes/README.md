@@ -687,3 +687,106 @@ imprimePropiedades(tony)
 ```
 
 Con la desestructuración de argumentos, podemos extraer las propiedades de un objeto y asignarle valores por defecto en caso de que no se encuentre la propiedad.
+
+## Ciclos y estructuras de control
+
+### Valor, referencia y romper la referencia
+
+En JavaScript todo los primitivos son pasados por valor y todo los objetos son pasados por referencia.
+
+Por ejemplo:
+
+```javascript
+let a = 10;
+let b = a;
+console.log({a, b}); // { a: 10, b: 10 }
+
+a = 30;
+
+console.log({a, b}); // { a: 30, b: 10 }
+```
+
+Cuando es un primitivo, cualquier tipo de reasignación que hagamos o cuando pasamos el valor como argumento a una función, lo estamos mandando por valor, es decir, no importa si transformamos la variable o si la asignamos a otra cosa, no estamos afectando el mismo valor en memoria.
+
+```javascript
+let juan = {nombre: 'Juan'};
+let ana = juan;
+
+console.log({juan, ana}); // { juan: { nombre: 'Juan' }, ana: { nombre: 'Juan' } }
+
+ana.nombre = 'Ana';
+console.log({juan, ana}); // { juan: { nombre: 'Ana' }, ana: { nombre: 'Ana' } }
+```
+
+Yo en ningún momento cambie el nombre en la variable `juan`, solo lo cambié en la variable `ana`, ¿Por qué pasó esto?. Porque en JavaScript todos los objetos son pasados por referencia, es decir, que cuando cambiamos el valor del nombre en la variable `ana`, estamos cambiando el valor de la variable `juan` también, porque apuntan a la misma dirección de memoria.
+
+```javascript
+const cambiarNombre = (persona) => {
+  persona.nombre = 'Tony';
+  return persona;
+}
+
+let peter = {nombre: 'Peter'};
+ñet tony = cambiarNombre(peter);
+
+console.log({peter, tony}); // { peter: { nombre: 'Tony' }, tony: { nombre: 'Tony' } }
+```
+
+Esto pasa porque mandamos el objeto `peter` como argumento a la función `cambiarNombre`, ese objeto es pasado por referencia a la función, entonces cualquier modificación que le hagamos dentro de la función va a ser afectado si lo retornamos.
+
+Para resolver este tipo de problemas, es que cuando queramos crear una copia de un objeto, debemos hacerlo de la siguiente manera:
+
+```javascript
+let juan = {nombre: 'Juan'};
+let ana = {...juan}; // operador spread
+
+const cambiarNombre = ({...persona}) => {
+  persona.nombre = 'Tony';
+  return persona;
+}
+
+let peter = {nombre: 'Peter'};
+let tony = cambiarNombre(peter);
+```
+
+De esta forma rompemos la relación entre los objetos, de esta forma ya no apuntan a la misma dirección de memoria.
+
+Con arreglos puede llegar a pasar lo mismo
+
+```javascript
+const frutas = ['Manzana', 'Pera', 'Naranja'];
+
+const otrasFrutas = frutas;
+
+otrasFrutas.push('Uva');
+
+console.log({frutas, otrasFrutas}); // { frutas: [ 'Manzana', 'Pera', 'Naranja', 'Uva' ], otrasFrutas: [ 'Manzana', 'Pera', 'Naranja', 'Uva' ] }
+```
+
+Para solucionar esto podemos ponerlo de la siguiente manera:
+
+```javascript
+const otrasFrutas = [...frutas]; // de esta forma creamos un nuevo arreglo
+```
+
+Hay otra forma de romper la relación entre los arreglos con el método `.slice()`:
+
+```javascript
+const otrasFrutas = frutas.slice(); // de esta forma también creamos un nuevo arreglo
+```
+
+¿Cual es la forma más eficiente?, para saber eso, podemos comparar el tiempo que tarda en ejecutarse cada una de las formas:
+
+```javascript
+console.time('slice');
+const otrasFrutas = frutas.slice();
+console.timeEnd('slice');
+
+console.time('spread');
+const otrasFrutas = [...frutas];
+console.timeEnd('spread');
+```
+
+De esta forma se puede ver que la forma `spread` es un poco más rápido que la forma `slice`.
+
+El usar `console.time()` y `console.timeEnd()` nos permite medir el tiempo que tarda alguna instrucción en ejecutarse, es muy util para saber escoger la mejor forma de hacer algo.
