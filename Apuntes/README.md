@@ -2,7 +2,7 @@
 
 `Java` y `JavaScript` son dos lenguajes de programación diferentes, funcionan de manera diferente, se ejecutan de manera diferente y tienen un enfoque diferente.
 
-A inicio de los años 90, la velocidad de los modems era de 28kbps lo que abrió las puertas a que se pueda construir sitios web mejores. Esto dio lugar a la necesidad de crear un lenguaje que se ejecutar del lado del cliente, para así poder lidiar con la lentitud del internet y la complejidad de las páginas web. Antes de JavaScript, el servidor lidiaba con toda la lógica de la página web, y el cliente sólo se encargaba de la parte visual.
+A inicio de los años 90, la velocidad de los modems era de 28kbps lo que abrió las puertas a que se pueda construir sitios web mejores. Esto dio lugar a la necesidad de crear un lenguaje que se ejecutara del lado del cliente, para así poder lidiar con la lentitud del internet y la complejidad de las páginas web. Antes de JavaScript, el servidor lidiaba con toda la lógica de la página web, y el cliente sólo se encargaba de la parte visual.
 
 La persona que creó inicialmente el lenguaje fue `Brendan Eich` el cual era un empleado de `Netscape` con el fin de evitar el envió constante de información al servidor. La primera version de este lenguaje fue llamada `LiveScript`, pero luego con fines de marketing decidieron cambiar el nombre a `JavaScript`, ya que `Java` estaba de moda en esa época.
 
@@ -48,7 +48,7 @@ Lo que hace JavaScript es tomar el valor a la derecha del signo igual `=` y asig
 
 Existen diferencias entre declarar variables con `var`, `let` y `const`. Con `const` no podemos reasignar el valor de la variable, pero con `let` y `var` podemos.
 
-`var` era la forma antigua de declarar variables, actualmente no se usa ya que traía varios problemas, actualmente se prefiere usar `let` y `const`. Sin embargo podemos seguir usando `var` si queremos ya que JavaScript es retrocompatible, es decir que podemos usar código de versiones anteriores del lenguaje.
+`var` era la forma antigua de declarar variables, actualmente no se usa ya que traía varios problemas, actualmente se prefiere usar `let` y `const`. Sin embargo podemos seguir usando `var` si queremos, ya que JavaScript es retrocompatible, es decir que podemos usar código de versiones anteriores del lenguaje y mesclarlo con el nuevo.
 
 ### Versiones de JavaScript
 
@@ -72,9 +72,9 @@ Es la versión más extendida del lenguaje, usualmente cuando queremos la mayor 
 
 ### Polyfill
 
-Es un código que provee el funcionamiento de una característica de JavaScript (ES5), en versiones viejas como ES5.
+Es un código que provee el funcionamiento de una característica de JavaScript (ES6), en versiones viejas como ES5.
 
-## Fundamentos, primitivas, arreglos, objetos y funciones básicas
+## Fundamentos, primitivos, arreglos, objetos y funciones básicas
 
 ### Tipo de dato de una variable
 
