@@ -5,7 +5,7 @@ const obtenerDia = (dia) => {
 
   const diasDeLaSemana = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
 
-return diasDeLaSemana[dia];
+  return diasDeLaSemana[dia];
 
 }
 
