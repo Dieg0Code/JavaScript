@@ -790,3 +790,47 @@ console.timeEnd('spread');
 De esta forma se puede ver que la forma `spread` es un poco más rápido que la forma `slice`.
 
 El usar `console.time()` y `console.timeEnd()` nos permite medir el tiempo que tarda alguna instrucción en ejecutarse, es muy util para saber escoger la mejor forma de hacer algo.
+
+## If, else if, else
+
+`If-else` es una estructura de control, hasta ahora el código que hemos escrito se va ejecutando linea por linea, las estructuras de control nos permiten alterar ese flujo de ejecución.
+
+```javascript
+let a = 5;
+
+if(a >= 10) {
+  console.log('a es mayor o igual a 10');
+} else if(a >= 5) {
+  console.log('a es mayor o igual a 5');
+} else {
+  console.log('a es menor a 5');
+}
+
+console.log('Fin del programa');
+```
+
+Este tipo de estructura de control resuelve en un booleano si la condición es verdadera o falsa, y dependiendo de eso ejecuta una u otra parte del código.
+
+El  `else` sirve como un si no, si la condición no se cumple, ejecuta el código que esté dentro del `else`.
+
+```javascript
+const hoy = new Date();
+let dia = hoy.getDay(); // 0: Dom, 1: Lun, 2: Mar, 3: Mie, 4: Jue, 5: Vie, 6: Sab
+
+if (dia === 0) {
+  console.log('Hoy es Domingo');
+} else {
+  console.log('Hoy no es Domingo');
+}
+```
+
+Es importante saber la diferencia entre `=`, `==` y `===`:
+
+  * `=` : es una asignación, es decir, se le asigna un valor a una variable.
+  * `==` : es una comparación no estricta, es decir, se compara dos valores pero no se preocupa si son de tipo diferente.
+  * `===` : es una comparación estricta, es decir, se compara dos valores y ambos deben ser del mismo tipo.
+
+```javascript
+console.log(5 == '5'); // true
+console.log(5 === '5'); // false
+```
