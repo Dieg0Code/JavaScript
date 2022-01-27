@@ -847,7 +847,7 @@ const obtenerDia = (dia) => {
 
   const diasDeLaSemana = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
 
-return diasDeLaSemana[dia];
+  return diasDeLaSemana[dia];
 }
 
 console.log(obtenerDia(dia));
@@ -868,3 +868,100 @@ const diasLetras = {
 
 console.log(diasLetras[dia] || 'No es un día válido');
 ```
+
+## Lógica Booleana
+
+La lógica booleana es una forma de trabajar con los valores `true` y `false`.
+
+### Negación
+
+Podemos negar un valor booleano con el operador `!`, al negarlo lo que estamos haciendo es básicamente invertir el valor.
+
+  * `!true` = false
+  * `!false` = true
+
+```javascript
+const regresaTrue = () => true;
+
+const regresaFalse = () => false;
+
+console.log(!regresaTrue()); // false
+console.log(!regresaFalse()); // true
+```
+
+### Operador And `&&`
+
+El operador `&&` es un operador lógico que nos devolverá `true` si todos los valores son verdaderos.
+
+  * `true && true` = true
+  * `true && false` = false
+  * `false && true` = false
+  * `false && false` = false
+  * `true && true && true` = true
+  * `true && true && false` = false
+  * `true && false && true` = false
+  * `true && false && false` = false
+
+Otro uso muy común del AND es para disparar acciones unicamente si la primera condición se cumple.
+
+```javascript
+const regresaTrue = () =>  {
+  console.log('Regreso true');
+  return true;
+}
+const regresaFalse = () => {
+  console.log('Regreso false');
+  return false;
+}
+
+console.log(regresaFalse() && regresaTrue()); // Regreso false false
+```
+
+Cuando estamos usando el AND y la primera operación ya regresó falso, JavaScript simplemente ejecuta esa operación ya que no hay motivo para seguir evaluando lo demás, porque ya sabemos que el resultado es falso, es decir, si la primera condición es falsa, va a ignorar todo lo demás.
+
+```javascript
+const regresaTrue = () =>  {
+  console.log('Regreso true');
+  return true;
+}
+const regresaFalse = () => {
+  console.log('Regreso false');
+  return false;
+}
+
+console.log(regresaTrue() && regresaFalse()); // Regreso true regreso false false
+```
+
+Si es verdadera la primera, entonces ejecuta las dos.
+
+También simplemente podemos poner el código así:
+
+```javascript
+regresaTrue() && regresaFalse();
+```
+
+Y lo que estamos diciendo es, ejecuta la segunda operación si la primera es verdadera. 
+
+### Operador Or `||`
+
+Es básicamente lo opuesto al AND, para que el ``OR`` regrese true al menos uno debe ser verdadero.
+
+  * `true || true` = true
+  * `true || false` = true
+  * `false || true` = true
+  * `false || false` = false
+  * `true || true || true` = true
+  * `true || true || false` = true
+  * `true || false || true` = true
+  * `true || false || false` = true
+
+```javascript
+const regresaTrue = () => true;
+const regresaFalse = () => false;
+
+console.log(regresaTrue() || regresaFalse()); // true
+console.log(regresaFalse() || regresaTrue()); // true
+console.log(regresaFalse() || regresaFalse()); // false
+```
+
+Se puede hacer lo mismo que con el AND, si la primera operación ya regresó true, entonces ignora las demás operaciones.
