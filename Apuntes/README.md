@@ -1090,3 +1090,52 @@ El operador condicional ternario consiste en:
   * `condicion ? valor1 : valor2`
 
 La condición, `?`, el valor que resuelve si es verdadero, `:` y el valor que resuelve si es falso.
+
+### Otros usos del operador ternario
+
+```javascript
+const elMayor = (a,b) => {
+  return (a > b) ? a : b;
+}
+
+console.log(elMayor(10, 20)); // 20
+```
+
+Podemos resumir la función anterior de la siguiente manera:
+
+```javascript
+const elMayor = (a,b) => (a > b) ? a : b;
+```
+
+```javascript
+const tieneMembresia = (miembro) => (miembro) ? '2 Dólares' : '10 Dólares';
+
+console.log(tieneMembresia(true)); // 2 Dólares
+```
+
+El operador ternario también es util cuando queremos generar arreglos u objetos con alguna condición dentro de estos.
+
+Por ejemplo:
+
+```javascript
+const amigo = true;
+const amigosArr = ['Peter',
+ 'Tony',
+  'Dr. Strange',
+  amigo ? 'Thor' : 'Loki',
+];
+
+console.log(amigosArr); // ['Peter', 'Tony', 'Dr. Strange', 'Thor']
+```
+
+```javascript
+const nota = 65; // A+, A, B+
+const grado = nota >= 95 'A+' :
+              nota >= 90 'A' :
+              nota >= 85 'B+' :
+              nota >= 80 'B' :
+              nota >= 75 'C+' :
+              nota >= 70 'C' : 'F';
+
+console.log({nota, grado}); // {nota: 65, grado: 'F'}
+```
