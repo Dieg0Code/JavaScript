@@ -1023,3 +1023,70 @@ const a6 = soyFalse || soyUndefined || soyNull || 'Ya no soy false' || true;
 
 console.log({a6}); // {a6: 'Ya no soy false'}
 ```
+
+## Operador condicional ternario
+
+El operador condicional ternario no es mas que una forma resumida de escribir un `if`.
+
+Ejemplo:
+
+```javascript
+/**
+ * Días de  semana abrimos a las 11,
+ * pero los fines de semana abrimos a las 9.
+ */
+
+// Un usuario entra al sitio web para consultar si está abierto hoy.
+
+const dia = 0 // 0: Domingo, 1: Lunes, 2: Martes, 3: Miércoles, 4: Jueves, 5: Viernes, 6: Sábado
+const horaActual = 10;
+
+let horaApertura;
+let mensaje; // Está abierto, Está cerrado, hoy abrimos a las xx
+
+if (dia === 0 || dia === 6) {
+  console.log('Es fin de semana');
+  horaApertura = 9;
+} else {
+  console.log('Es día de semana');
+  horaApertura = 11;
+}
+
+if (horaActual >= horaApertura) {
+  mensaje = 'Está abierto';
+} else {
+  mensaje = `Está cerrado, hoy abrimos a las ${horaApertura}`;
+}
+
+console.log({horaApertura, mensaje});
+```
+
+Esto es una forma de resolverlo, pero es muy largo y no es lo que queremos.
+
+También podemos hacerlo de la siguiente manera:
+
+```javascript
+if ([0, 6].includes(dia)) {
+  console.log('Es fin de semana');
+  horaApertura = 9;
+} else {
+  console.log('Es día de semana');
+  horaApertura = 11;
+}
+```
+
+Con el método `includes` podemos saber si un valor está dentro de un arreglo y regresará un valor booleano en consecuencia.
+
+Aún así sigue siendo muy largo, podemos simplificarlo usando el operador condicional ternario.
+
+```javascript
+horaApertura = [0, 6].includes(dia) ? 9 : 11; // Si es domingo (0) o sábado(6), entonces abrimos a las 9, sino, abrimos a las 11.
+
+mensaje = (horaActual >= horaApertura) ? 'Está abierto' : `Está cerrado, hoy abrimos a las ${horaApertura}`;
+```
+
+El operador condicional ternario consiste en:
+
+  * `condicion ? valor1 : valor2`
+
+La condición, `?`, el valor que resuelve si es verdadero, `:` y el valor que resuelve si es falso.
