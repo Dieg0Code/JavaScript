@@ -965,3 +965,61 @@ console.log(regresaFalse() || regresaFalse()); // false
 ```
 
 Se puede hacer lo mismo que con el AND, si la primera operación ya regresó true, entonces ignora las demás operaciones.
+
+### Asignaciones con operadores
+
+```javascript
+const soyUndefined = undefined;
+const soyNull = null;
+const soyFalse = false;
+
+let a1 = true && 'Hola mundo';
+
+console.log({a1}); // {a1: 'Hola mundo'}
+
+a1 = true && 'Hola mundo' && 150;
+
+console.log({a1}); // {a1: 150}
+
+a1 = false && 'Hola mundo' && 150;
+
+console.log({a1}); // {a1: false}
+```
+
+Eso de asignar valores con el operador AND no es algo tan común, pero si es posible, si los valores son verdaderos, entonces la variable toma el ultimo valor que se le asignó.
+
+De la misma forma si lo primero que encuentra es falso, entonces se detiene ahí y toma ese valor.
+
+```javascript
+const a2 = 'Hola' && 'mundo';
+
+console.log({a2}); // {a2: 'mundo'}
+
+const a3 = 'Hola' && 'mundo' && false;
+
+console.log({a3}); // {a3: false}
+```
+
+Funciona de la misma forma que una tabla de verdad, si estamos usando AND `&&` y el resultad de la operación es falso, entonces la variable toma ese valor, de lo contrario, si es todo verdadero, entonces toma el ultimo valor que se le asignó.
+
+Hacer uso de `&&` dentro de variables no es algo común, lo que si se suele ver es usar el operador OR `||` para asignar valores.
+
+```javascript
+const a4 = soyFalse || 'Ya no soy false';
+
+console.log({a4}); // {a4: 'Ya no soy false'}
+
+const a5 = soyFalse || soyUndefined || soyNull || 'Ya no soy false';
+
+console.log({a5}); // {a5: 'Ya no soy false'}
+```
+
+Los valores `false`, `undefined` y `null` son considerados como falsos, es por eso que la variable `a5` toma el valor `Ya no soy false`.
+
+Pero si pusiéramos `true` como ultimo valor, después de 'Ya no soy false', el valor que toma la variable seguiría siendo `Ya no soy false`, porque se detiene en el primer valor que encuentra que es verdadero.
+
+```javascript
+const a6 = soyFalse || soyUndefined || soyNull || 'Ya no soy false' || true;
+
+console.log({a6}); // {a6: 'Ya no soy false'}
+```
