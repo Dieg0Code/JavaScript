@@ -1139,3 +1139,119 @@ const grado = nota >= 95 'A+' :
 
 console.log({nota, grado}); // {nota: 65, grado: 'F'}
 ```
+
+## Switch
+
+Un `switch` es una estructura de control que nos permite evaluar una condición y ejecutar una serie de instrucciones dependiendo de la condición.
+
+```javascript
+const dia = 0;
+
+switch(dia) {
+  case 0:
+    console.log('Domingo');
+    break;
+  case 1:
+    console.log('Lunes');
+    break;
+  case 2:
+    console.log('Martes');
+    break;
+  case 3:
+    console.log('Miércoles')
+  case 4:
+    console.log('Jueves');
+    break;
+  case 5:
+    console.log('Viernes');
+    break;
+  case 6:
+    console.log('Sábado');
+    break;
+  default:
+    console.log('No es un día de la semana');
+}
+```
+
+Después de cada `case` debemos de poner un `break` para que el `switch` se detenga en el caso que se cumpla la condición, de lo contrario seguirá ejecutando los siguientes `case`'s.
+
+El `default` se ejecutará en caso de que ningún `case` se cumpla.
+
+## While y do while
+
+El `while` y el `do while` son estructuras de control iterativas que nos permiten ejecutar una serie de instrucciones de manera cíclica en caso de que la condición sea verdadera.
+
+Hay que tener cuidado con las condiciones que le pasamos al `while` y al `do while` ya que estas se evalúan en cada iteración, por lo que podemos tener un bucle infinito.
+
+```javascript
+const carros = ['Ford', 'Mazda', 'Chevrolet', 'Toyota'];
+
+i = 0
+
+while (i < carros.length) {
+  console.log(carros[i]);
+  i++;
+}
+```
+
+La condición tiene que ser verdadera para que se ejecute el bucle. También hay que saber que los valores `undefined`, `null` y obviamente `false` son considerados como falsos.
+
+### Do while
+
+El ciclo `do while` es similar al `while` pero se ejecuta al menos una vez antes de evaluar la condición.
+
+Por decirlo de alguna manera, `while` pregunta primero y después dispara el ciclo, mientras que `do while` dispara primero y luego pregunta.
+
+Por ejemplo:
+
+```javascript
+const carros = ['Ford', 'Mazda', 'Chevrolet', 'Toyota'];
+
+let i = 0;
+
+do {
+  console.log(carros[i]);
+  i++;
+} while (i < carros.length);
+```
+
+## For - For in - For of
+
+El ciclo `for` también es una estructura de control iterativa que nos permite ejecutar una serie de instrucciones en un rango de valores.
+
+El ciclo `for` tiene tres partes:
+
+  * `for (inicio; condición; incremento) {// Instrucciones}`
+
+```javascript
+const heroes = ['Batman', 'Superman', 'Flash', 'Wonder']
+
+for (let i = 0; i < heroes.length; i++) {
+  console.log(heroes[i]);
+}
+```
+### For in
+
+También tenemos el ciclo `for in` el cual es bastante utilizado si queremos recorrer un objeto o un arreglo.
+
+```javascript
+const heroes = ['Batman', 'Superman', 'Flash', 'Wonder'];
+
+for (let i in heroes) {
+  console.log(heroes[i]);
+}
+```
+
+### For of
+
+El ciclo `for of` es bastante utilizado para poder obtener referencias a valores de objetos o arreglos de una manera más sencilla.
+
+```javascript
+const heroes = ['Batman', 'Superman', 'Flash', 'Wonder'];
+
+for (let heroe of heroes) {
+  console.log(heroe); // Batman, Superman, Flash, Wonder
+}
+```
+
+Lo que hace el `for of` es extraer el valor de cada elemento y lo asigna a la variable que se está usando como iterador, en este caso `heroe`, es por eso que se acostumbra nombrar la variable como el singular del objeto o arreglo que estamos iterando. (heroes - heroe).
