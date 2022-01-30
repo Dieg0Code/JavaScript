@@ -1254,4 +1254,4 @@ for (let heroe of heroes) {
 }
 ```
 
-Lo que hace el `for of` es extraer el valor de cada elemento y lo asigna a la variable que se está usando como iterador, en este caso `heroe`, es por eso que se acostumbra nombrar la variable como el singular del objeto o arreglo que estamos iterando. (heroes - heroe).
+Lo que hace el `for of` es extraer el valor de cada elemento y lo asigna a la variable que se está usando como iterador, en este caso `heroe`, es por eso que se acostumbra nombrar la variable iteradora como el singular del objeto o arreglo que estamos recorriendo. (heroes -> heroe).
