@@ -109,3 +109,42 @@ titulo.innerText = 'Hola mundo'
 ```
 
 Esto hace el código más rápido y eficiente, ya que no tiene que estar barriendo todo el DOM cada vez que quiera modificar el titulo.
+
+Otro tema básico sobre la manipulación del DOM es la creación de elementos que no existen.
+
+Supongamos que quiero crear un nuevo botón. Lo primero es saber en donde vamos a colocarlo, para eso podemos ponerle un atributo `id` al `<div>` que contiene los botones, en mi caso lo pondré en `id="divBotones"`:
+
+```javascript
+const divBotones = document.querySelector('#divBotones');
+```
+
+Para crear un nuevo elemento podemos usar la sentencia `document.createElement()`
+
+```javascript
+const botonNuevo = document.createElement('button');
+```
+
+Y para colocar el botón nuevo dentro del div de los botones, podemos usar la sentencia `divBotones.append()`:
+
+```javascript
+divBotones.append(botonNuevo)
+```
+
+Al crear el botón lo coloca al final de los otros, ademas de que no tiene ningún texto, ni clase, ni estilo. Cada vez que quiera modificar el botón lo podemos hacer referencia a la variable que guardamos:
+
+```javascript
+botonNuevo.innerText = 'Nuevo botón'
+botonNuevo.classList.add('btn-success')
+```
+
+De esta manera le agrego un texto y un estilo de bootstrap.
+
+Supongamos que quiero crear un input al final del body:
+
+```javascript
+const input = document.createElement('input');
+document.body.append(input);
+
+input.classList.add('form-control')
+input.placeholder = 'Ingrese su nombre'
+```
