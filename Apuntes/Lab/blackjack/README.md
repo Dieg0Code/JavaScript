@@ -148,3 +148,51 @@ document.body.append(input);
 input.classList.add('form-control')
 input.placeholder = 'Ingrese su nombre'
 ```
+
+## Patrón Módulo
+
+El `patrón módulo` es el patrón de diseño mas común en JavaScript, es compatible con la version ES5 hacia arriba. Nos permite una encapsulación de código lo cual nos ayuda a protegerlo.
+
+Cuando hablamos de encapsulación nos referimos a que nuestro código queda en una especie de contenedor privado de manera de que nadie de fuera pueda manipular mis variables o funciones.
+
+La sintaxis del patrón módulo es la siguiente:
+
+```javascript
+(() => {
+    
+    const personajes = ['Goku', 'Vegeta', 'Trunks'];
+    console.log(personajes);
+
+})();
+```
+
+La idea es crear una función anónima autoinvocada, la cual crea un nuevo scope el cual no tiene una referencia por nombre por lo cual no va a ser posible llamar el objeto directamente.
+
+Al ejecutar el código nos va a imprimir el array `['Goku', 'Vegeta', 'Trunks']`. Pero si intento acceder a la variable `personajes` escribiéndola en la consola nos va a decir que la variable no existe. Esto es porque la variable está en algún lugar de la memoria sin un identificador por nombre por lo que es muy difícil de encontrar.
+
+Algo también muy común es encontrar el `'use strict'`, el cual básicamente le dice a JavaScript que sea estricto a la hora de evaluar el código.
+
+Por ejemplo:
+
+```javascript
+(() => {
+
+    personajes = ['Goku', 'Vegeta', 'Trunks'];
+    console.log(personajes);
+
+})();
+```
+
+A pesar de no haber declarado la variable `personajes`, el código funciona, pero si uso el [modo estricto](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Strict_mode), el código no va a funcionar.
+
+```javascript
+(() => {
+    'use strict';
+
+    personajes = ['Goku', 'Vegeta', 'Trunks'];
+    console.log(personajes);
+
+})(); // Error: personajes is not defined
+```
+
+Esto nos ayuda a que nuestro código sea mas limpio, es recomendable habilitarlo siempre que usamos el patrón módulo ya que ayuda a evitar errores muy comunes a la hora del desarrollo.
