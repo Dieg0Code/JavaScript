@@ -1,4 +1,4 @@
-// Feliz cumpleaños Diego!
+// Feliz cumpleaños Diego 🎂
 
 const miModulo = (() => {
     'use strict';
