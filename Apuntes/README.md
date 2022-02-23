@@ -1505,7 +1505,7 @@ const persona = {
 persona.imprimir(); // Hola, me llamo Diego y tengo 26 años
 ```
 
-Trabajar los objetos de esta manera no es lo más recomendable, para solucionar este problema de objetos que tienen las misma propiedades y métodos JavaScript implemento la siguiente solución:
+Trabajar los objetos de esta manera no es lo más recomendable, para solucionar este problema de objetos que tienen las misma propiedades y métodos JavaScript implementó la siguiente solución:
 
 ```javascript
 function Persona(nombre, edad) {
@@ -1633,3 +1633,71 @@ class Persona {
 
 const spiderman = new Persona('Peter', 'Spiderman', 'Soy tu amigable vecino Spiderman');
 spiderman.quienSoy(); // Soy Peter y mi identidad es Spiderman
+```
+
+## Setters y Getters en las clases
+
+Los métodos setter y getter son funciones que se encargan de asignar y obtener valores de las propiedades de un objeto, esto se hace de esta manera para evitar que las propiedades sean modificadas directamente.
+
+```javascript
+class Persona {
+  nombre = '';
+  codigo = '';
+  frase = '';
+  comida = '';
+
+  constructor(nombre, codigo, frase) {
+    this.nombre = nombre;
+    this.codigo = codigo;
+    this.frase = frase;
+
+  }
+
+  set setComidaFavorita( comida ) {
+    this.comida = comida;
+  }
+
+  quienSoy() {
+    console.log(`Soy ${this.nombre} y mi identidad es ${this.codigo}`);
+  }
+
+  miFrase() {
+    console.log(this.frase);
+  }
+
+}
+
+const spiderman = new Persona('Peter', 'Spiderman', 'Soy tu amigable vecino Spiderman');
+spiderman.quienSoy();
+
+spiderman.setComidaFavorita = 'El pie de cereza de la tía May';
+```
+
+Hay también algunas peculiaridades en JavaScript con las clases, como por ejemplo puedo asignar valores a propiedades que no están declaradas.
+
+```javascript
+spiderman.nemesis = 'Duende Verde';
+```
+
+Podríamos pensar que esto dará error porque no tenemos una propiedad llamada `nemesis` en ninguna parte, pero en realidad funciona perfectamente y lo guarda como una propiedad de la clase.
+
+Otra cosa rara, es que por ejemplo puedo modificar el valor de una propiedad directamente porque no puedo establecer propiedades privadas.
+
+```javascript
+spiderman.comida = 'Duende Verde';
+```
+
+Y no pasa nada, esto funciona perfectamente.
+
+Las propiedades privadas son algo que nuevo que se establecerá en JavaScript, como es algo nuevo no funciona todavía en todos los navegadores, de momento solo en chrome.
+
+### Get
+
+Si el Set es para establecer valores a propiedades, el Get es para obtenerlos.
+
+```javascript
+get comidaFavorita() {
+  return `La comida favorita de ${this.nombre} es ${this.comida}`;
+}
+
+console.log(spiderman.getComidaFavorita);
