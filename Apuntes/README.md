@@ -1787,3 +1787,53 @@ Persona.propiedadExterna = 'Esta es una propiedad externa';
 ```
 
 Referenciando directamente a la clase como si fuese un objeto.
+
+## Extends - Clases con SubClases
+
+Eventualmente vamos a necesitar trabajar con herencia, es decir, vamos a necesitar crear una clase que herede propiedades y métodos de otra clase.
+
+```javascript
+class Persona {
+  nombre = '';
+  codigo = '';
+  frase = '';
+  comida = '';
+
+  constructor(nombre = 'sin nombre', codigo = 'sin codigo', frase = 'sin frase') {
+    this.nombre = nombre;
+    this.codigo = codigo;
+    this.frase = frase;
+
+  }
+
+  set setComidaFavorita( comida ) {
+    this.comida = comida;
+  }
+
+  quienSoy() {
+    console.log(`Soy ${this.nombre} y mi identidad es ${this.codigo}`);
+  }
+
+  miFrase() {
+    console.log(this.frase);
+  }
+
+}
+
+const spiderman = new Persona('Peter', 'Spiderman', 'Soy tu amigable vecino Spiderman');
+```
+
+Supongamos que necesito crear una nueva clase llamada Heroe, la cual va a tener las mismas propiedades que Persona, en vez de reescribir el constructor, podríamos usar `extends` para heredar las propiedades y métodos de la clase Persona.
+
+```javascript
+class Heroe extends Persona {
+
+  clan = 'sin clan';
+
+  constructor(nombre, codigo, frase, clan) {
+    super(nombre, codigo, frase); // el constructor de la clase padre siempre debe ir primero
+    this.clan = clan;
+  }
+
+}
+```
