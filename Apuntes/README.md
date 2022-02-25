@@ -1883,3 +1883,36 @@ const rectangulo = new Rectangulo(10, 15); // area = 150
 Lamentablemente esto aún no se puede hacer con los métodos.
 
 Esta característica de momento no es soportada por todos los navegadores, por lo que hay que tener cuidado al usarla.
+
+## Singleton en JavaScript
+
+Un singleton es básicamente una instancia única de una clase. Imaginemos que necesito tener una clase la cual solo debe tener una instancia de manera global en toda la aplicación.
+
+```javascript
+class Singleton {
+
+
+  static instancia;
+  nombre = '';
+
+  constructor(nombre = '') {
+
+    if (!!Singleton.instancia) {
+      return Singleton.instancia;
+    }
+
+    Singleton.instancia = this;
+    this.nombre = nombre;
+
+  }
+
+}
+
+const instancia1 = new Singleton('Ironman');
+const instancia2 = new Singleton('Capitan America');
+
+console.log(`Nombre de la instancia 1: ${instancia1.nombre}`); // Ironman
+console.log(`Nombre de la instancia 2: ${instancia2.nombre}`); // Ironman
+```
+
+No importa cuantas veces vuelva a instanciar la clase, siempre va a devolver la primera instancia.
