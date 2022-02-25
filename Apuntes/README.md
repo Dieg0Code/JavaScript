@@ -1837,3 +1837,49 @@ class Heroe extends Persona {
 
 }
 ```
+
+## Propiedades privadas
+
+Las propiedades privadas es algo que la POO ha tenido desde hace mucho, pero en JavaScript es algo que todavía no es un estándar, pero se puede hacer.
+
+```javascript
+class Rectangulo {
+
+  area = 0;
+
+  constructor(base = 0, altura = 0) {
+    this.base = base;
+    this.altura = altura;
+
+    this.area = base * altura;
+  }
+
+}
+
+const rectangulo = new Rectangulo(10, 15); // area = 150
+```
+
+En JavaScript como el area no es una propiedad privada, puedo cambiar el valor que tiene, ya sea accidental o intencionalmente, esto no debería poder hacerlo ya que el area es un valor calculado en base a la base y la altura.
+
+Para que el area sea una propiedad privada podemos usar el operador `#`.
+
+```javascript
+class Rectangulo {
+
+  #area = 0;
+
+  constructor(base = 0, altura = 0) {
+    this.base = base;
+    this.altura = altura;
+
+    this.#area = base * altura;
+  }
+
+}
+
+const rectangulo = new Rectangulo(10, 15); // area = 150
+```
+
+Lamentablemente esto aún no se puede hacer con los métodos.
+
+Esta característica de momento no es soportada por todos los navegadores, por lo que hay que tener cuidado al usarla.
