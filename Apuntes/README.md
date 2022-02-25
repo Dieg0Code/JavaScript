@@ -1916,3 +1916,49 @@ console.log(`Nombre de la instancia 2: ${instancia2.nombre}`); // Ironman
 ```
 
 No importa cuantas veces vuelva a instanciar la clase, siempre va a devolver la primera instancia.
+
+## Múltiples constructores
+
+En lenguajes como Java podemos tener múltiples constructores en los cuales puede variar la cantidad de argumentos que reciben.
+
+En JavaScript no es posible esto, pero podemos utilizar un truco para lograr algo similar.
+
+```javascript
+class Persona {
+
+  static porObjeto( { nombre, apellido, pais } ) {
+    return new Persona( nombre, apellido, pais );
+  }
+
+  constructor( nombre, apellido, pais ) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.pais = pais;
+  }
+
+  getInfo() {
+    return `Info: ${this.nombre}, ${this.apellido}, ${this.pais}`;
+  }
+
+}
+
+const fher = {
+
+  nombre: 'Fernando',
+  apellido: 'Herrera',
+  pais: 'Costa Rica'
+
+}
+
+const nombre1 = 'Diego',
+      apellido1 = 'Obando',
+      pais1 = 'Chile';
+
+const persona1 = new Persona(nombre1, apellido1, pais1);
+const persona2 = Persona.porObjeto(fher);
+
+persona1.getInfo(); // Info: Diego, Garcia, Chile
+persona2.getInfo(); // Info: Fernando, Herrera, Costa Rica
+```
+
+Con este truco podemos simular múltiples constructores en JavaScript.
