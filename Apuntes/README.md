@@ -1701,3 +1701,89 @@ get comidaFavorita() {
 }
 
 console.log(spiderman.getComidaFavorita);
+```
+
+## Propiedades, gets y métodos estáticos
+
+Las propiedades estáticas y los métodos estáticos nos permiten usarlos sin la necesidad de instanciar la clase.
+
+```javascript
+class Persona {
+
+  static _conteo = 0;
+
+
+  nombre = '';
+  codigo = '';
+  frase = '';
+  comida = '';
+
+}
+```
+
+Si imprimo la clase en consola no nos muestra la propiedad estática, esta propiedad por ejemplo nos puede servir para contar cuantas veces se ha instanciando la clase.
+
+```javascript
+class Persona {
+
+  static _conteo = 0;
+
+
+  nombre = '';
+  codigo = '';
+  frase = '';
+  comida = '';
+
+  constructor(nombre, codigo, frase) {
+    this.nombre = nombre;
+    this.codigo = codigo;
+    this.frase = frase;
+
+    Persona._conteo++;
+  }
+
+}
+```
+
+Cada vez que instanciamos una clase pasamos por su constructor por lo que es el lugar perfecto para poner el contador.
+
+Del mismo modo, también podemos poner métodos estáticos.
+
+```javascript
+class Persona {
+
+  static _conteo = 0;
+  static get conteo() {
+    return Persona._conteo + ' instancias';
+  }
+
+  static mensaje() {
+    console.log('Soy un mensaje estático');
+  }
+
+
+  nombre = '';
+  codigo = '';
+  frase = '';
+  comida = '';
+
+  constructor(nombre, codigo, frase) {
+    this.nombre = nombre;
+    this.codigo = codigo;
+    this.frase = frase;
+
+    Persona._conteo++;
+  }
+
+}
+
+Persona.mensaje();
+```
+
+También hay una forma en la que podemos definir propiedades estáticas fuera de la clase.
+
+```javascript
+Persona.propiedadExterna = 'Esta es una propiedad externa';
+```
+
+Referenciando directamente a la clase como si fuese un objeto.
