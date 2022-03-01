@@ -1957,8 +1957,31 @@ const nombre1 = 'Diego',
 const persona1 = new Persona(nombre1, apellido1, pais1);
 const persona2 = Persona.porObjeto(fher);
 
-persona1.getInfo(); // Info: Diego, Garcia, Chile
+persona1.getInfo(); // Info: Diego, Obando, Chile
 persona2.getInfo(); // Info: Fernando, Herrera, Costa Rica
 ```
 
 Con este truco podemos simular múltiples constructores en JavaScript.
+
+## Módulos y Webpack
+
+### Introducción a Node, NPM y Webpack
+
+Cuando desarrollamos llega un punto en el que ya no podemos usar un solo archivo para toda la aplicación, es entonces cuando necesitamos separar la lógica en módulos para que sea mas fácil darles mantenimiento después.
+
+También llegara un punto en donde necesitaremos usar tareas automáticas, como por ejemplo Live Reload para poder ver los cambios que hacemos en tiempo real, alguna herramienta para minimizar el código o alguna herramienta para incrementar la compatibilidad con otros navegadores.
+
+Con herramientas como ``NodeJs`` podemos usar nuestra computadora como servidor de desarrollo, esto es algo muy útil, pero al momento de pasar la aplicación al computador del cliente para ver si funciona bien, nos podemos encontrar con problemas, ya que puede que estemos usando características del lenguaje que no están disponibles en navegadores muy antiguos. Para solucionar este tipo de problemas podemos tomar nuestro código y pasarlo por librerías como `babel` para convertir nuestro código moderno a una versión que pueda interpretar cualquier navegador. Este tipo de librerías están disponibles gracias a `npm`, la idea de esta herramienta es que no tengamos que reinventar la rueda, sino que solo descargamos el paquete que necesitamos y lo instalamos.
+
+### Webpack
+
+Webpack es un empaquetador de módulos, es decir, nos ayuda a realizar muchos trabajos de forma automática como por ejemplo:
+
+- Gestionar las dependencias.
+- Montar servidores de desarrollo y pruebas.
+- Cargar módulos.
+- Convertir a diferentes formatos.
+- Minimizar el código.
+- Compilar de SASS a CSS.
+- Compilar de TS a JS.
+- Nos permite trabajar con JS moderno.
