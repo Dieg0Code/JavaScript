@@ -1985,3 +1985,29 @@ Webpack es un empaquetador de módulos, es decir, nos ayuda a realizar muchos tr
 - Compilar de SASS a CSS.
 - Compilar de TS a JS.
 - Nos permite trabajar con JS moderno.
+
+## Callbacks y Promesas
+
+Desde que introdujeron las promesas en JavaScript, la programación asíncrona se ha convertido en una de las características más importantes del lenguaje.
+
+## Callbacks
+
+Si bien el estándar de JavaScript está buscando usar cada vez menos los callbacks y trabajar mas con las promesas, todavía hoy en día es muy común ver y trabajar con ellos.
+
+Imaginemos que tenemos que crear una función que haga una búsqueda en alguna base de datos. Por ejemplo:
+
+```javascript
+buscarHeroe(heroeId);
+```
+
+Esta función debería ir a la base de datos, traer la información del heroe y ejecutar algún procedimiento después. Para esto JavaScript creó el concepto de callbacks, un callback no es más que una función enviada como argumento a otra función.
+
+```javascript
+const heroeId = 'capi';
+
+buscarHeroe(heroeId, () => {
+  console.log('Callback llamado');
+});
+```
+
+El objetivo de esta función enviada como un argumento es que dentro de la implementación de la función `buscarHeroe` yo pueda disparar el callback en el momento que acabe el procedimiento.
