@@ -2124,3 +2124,27 @@ buscarHeroe(heroeId)
 Esta al ser una promesa tiene 3 métodos, el `then` es cuando todo sucede correctamente, el `catch` es cuando hay algún error, y el `finally` el cual por lo general es usado para hacer algún tipo de limpieza  y siempre se ejecuta después de que se ejecute el `then` o el `catch`, es como el último paso.
 
 Una característica que hace mejor a las promesas que los callbacks, es que las promesas pasan a otro plano en donde esperan a ser resueltas para luego volver a la cola normal de procesos, esto previene que se bloquee la ejecución del programa, a diferencia de los callbacks los cuales son sincronos por lo que pueden bloquear la ejecución del programa.
+
+## Promise.all
+
+Las promesas están muy bien, pero que pasa si quiero recrear el código anterior con los callbacks?
+
+```javascript
+buscarHeroe( heroeId1 ).then( heroe1 => {
+    // console.log(`Enviando a ${heroe.nombre} a la batalla`);
+    buscarHeroe( heroeId2 ).then( heroe2 => {
+        console.log(`Enviando a ${heroe1.nombre} y ${heroe2.nombre} a la batalla`);
+    });
+});
+```
+
+No es mucha la diferencia, de echo esto se puede convertir en un `promise hell`. Pero si nos ponemos a analizar bien el procedimiento, las funciones buscarHeroe en realidad no tienen una relación tan directa, por que realmente lo que necesito es ejecutar ambas promesas, obtener la respuesta de ambas y luego de eso hago la impresión en consola. Puedo resumir todo el código a una manera más sencilla:
+
+```javascript
+Promise.all([ buscarHeroe( heroeId1 ), buscarHeroe( heroeId2 ) ])
+    .then( ([heroe1, heroe2]) => {
+        console.log(`Enviando a ${heroe1.nombre} y ${heroe2.nombre} a la batalla!!!`);
+    });
+```
+
+Con `Promise.all` puedo enviar un array con las promesas que necesito ejecutar, y cuando se resuelvan todas las promesas, se ejecutará el callback que le pasemos en el `then`, de esta forma estoy ejecutando ambas promesas en paralelo.
