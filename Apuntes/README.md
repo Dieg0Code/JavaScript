@@ -2078,3 +2078,49 @@ buscarHeroe( heroeId, ( err, heroe1 ) => {
 Conforme voy haciendo acciones en base a la respuesta de otro callback, esto se empieza a anidar y anidar,  y se vuelve casi imposible de leer y entender.
 
 A pesar de ser algo muy difícil de mantener, era la muy utilizado por mucho tiempo. Es por esto que JavaScript en el ES6 creo un mecanismo para poder trabajar esto de forma mas limpia, es ahí en donde nacieron las promesas.
+
+## Promesas
+
+Las promesas en JavaScript son iguales a como son las promesas en la vida real, por ejemplo, Juan le promete a Pedro que tendrá listo el reporte para mañana, entonces Pedro va a seguir con su vida normal haciendo las cosas que tiene que hacer, a Juan esto no le interesa para nada, el sabe que tiene su trabajo que es realizar ese reporte, mientras que Pedro sigue con la suyo a la espera de que Juan le entregue el reporte. Pero también tenemos el caso de que Juan no cumpla con su promesa, en ese caso Pedro tendrá que realizar alguna acción en base a la promesa que no cumplió Juan. Básicamente, eso es el concepto de las promesas.
+
+Entonces podemos entender una promesa como, un acuerdo entre dos partes, a través de la cual una de ellas se compromete a realizar algo ante el cumplimiento de una condición o el vencimiento de un plazo.
+
+Nos estamos comprometiendo a realizar algo y le vamos a avisar a la persona que le hicimos la promesa cuando terminamos de realizar el trabajo o bien notificarle si no somos capaces de cumplir esa promesa.
+
+```javascript
+export const buscarHeroe = ( id ) => {
+
+    const heroe = heroes[id];
+
+    return new Promise( ( resolve, reject ) => {
+
+        if ( heroe ) {
+            resolve( heroe );
+        } else {
+            reject( `No existe un hero con el id: ${id}` ); 
+        }
+
+    });
+
+}
+```
+
+Una promesa recibe un callback con dos argumentos, resolve y reject, el primero es cuando la promesa se resuelve, es decir, se cumple la condición, y el segundo es cuando la promesa se rechaza, es decir, cuando hay algún error de cualquier tipo.
+
+Entonces podemos usar la función en algún otro lado, por ejemplo:
+
+```javascript
+const heroeId = 'capi';
+
+buscarHeroe(heroeId)
+  .then(heroe => {
+    console.log(heroe);
+  })
+  .catch(err => {
+    console.error(err);
+  });
+```
+
+Esta al ser una promesa tiene 3 métodos, el `then` es cuando todo sucede correctamente, el `catch` es cuando hay algún error, y el `finally` el cual por lo general es usado para hacer algún tipo de limpieza  y siempre se ejecuta después de que se ejecute el `then` o el `catch`, es como el último paso.
+
+Una característica que hace mejor a las promesas que los callbacks, es que las promesas pasan a otro plano en donde esperan a ser resueltas para luego volver a la cola normal de procesos, esto previene que se bloquee la ejecución del programa, a diferencia de los callbacks los cuales son sincronos por lo que pueden bloquear la ejecución del programa.
