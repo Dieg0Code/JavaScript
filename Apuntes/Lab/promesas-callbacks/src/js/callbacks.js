@@ -14,10 +14,15 @@ const heroes = {
 }
 
 // callback retorna...
-export const buscarHeroe = (id, callback) => {
+export const buscarHeroe = ( id, callback ) => {
 
     const heroe = heroes[id];
 
-    callback(heroe);
+    if (heroe) {
+      callback(null, heroe);
+    } else {
+      // Un error
+      callback(`No existe un hero con el id: ${id}`);
+    }
 
-}
+  }     // fin de buscarHero    

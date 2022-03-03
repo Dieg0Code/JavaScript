@@ -2010,4 +2010,71 @@ buscarHeroe(heroeId, () => {
 });
 ```
 
-El objetivo de esta función enviada como un argumento es que dentro de la implementación de la función `buscarHeroe` yo pueda disparar el callback en el momento que acabe el procedimiento.
+El objetivo de esta función enviada como un argumento es que dentro de la implementación de la función `buscarHeroe` yo pueda disparar el callback en el momento que acabe el procedimiento, es decir, luego de que busque el heroe en la base de datos se ejecutará el callback.
+
+## Argumentos estándar de los callbacks
+
+Debemos de tener en cuanta que nuestras funciones deben ser autosuficientes y ser claras en su funcionamiento. 
+
+Por ejemplo, ¿como manejamos un error si es que no se encuentra el heroe?
+
+```javascript
+  export const buscarHeroe = ( id, callback ) => {
+
+    const heroe = heroes[id];
+
+    if (heroe) {
+      callback(null, heroe);
+    } else {
+      // Un error
+      callback(`No existe un hero con el id: ${id}`);
+    }
+
+  }
+```
+
+Es un estándar que el primer argumento que recibe un callback es un error, si es que existe.
+
+Entonces al momento de ejecutar la función podemos hacerlo de la siguiente manera:
+
+```javascript
+const heroeId = 'capi';
+
+buscarHeroe(heroeId, (err, heroe) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(heroe);
+  }
+});
+```
+
+Esta es la forma estándar de manejar los errores en los callbacks.
+
+## Callback Hell
+
+Un inconveniente que nos podemos encontrar con los callbacks es que podemos anidar uno dentro de otro, es decir, un callback puede llamar a otro callback, y así sucesivamente, esto es algo muy difícil de leer y entender.
+
+```javascript
+buscarHeroe( heroeId, ( err, heroe1 ) => {
+
+    if (err) { return console.error(err); }
+
+    buscarHeroe(heroeId1, ( err, heroe2 ) => {
+
+        if (err) { return console.error(err); }
+
+        buscarHeroe( heroeId2, (err, heroe3) => {
+
+          if (err) { return console.error( err ); }
+
+          console.log(`Enviando a ${heroe1.nombre} y ${heroe2.nombre} a la batalla`);
+
+        }); 
+    });
+});
+```
+
+Conforme voy haciendo acciones en base a la respuesta de otro callback, esto se empieza a anidar y anidar,  y se vuelve casi imposible de leer y entender.
+
+A pesar de ser algo muy difícil de mantener, era la muy utilizado por mucho tiempo. Es por esto que JavaScript en el ES6 creo un mecanismo para poder trabajar esto de forma mas limpia, es ahí en donde nacieron las promesas.
