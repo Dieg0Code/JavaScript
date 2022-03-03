@@ -2148,3 +2148,19 @@ Promise.all([ buscarHeroe( heroeId1 ), buscarHeroe( heroeId2 ) ])
 ```
 
 Con `Promise.all` puedo enviar un array con las promesas que necesito ejecutar, y cuando se resuelvan todas las promesas, se ejecutará el callback que le pasemos en el `then`, de esta forma estoy ejecutando ambas promesas en paralelo.
+
+## Promise.catch
+
+¿Que pasa si algo sale mal en una de las promesa?, de igual forma podemos usar el método `catch` para capturar el error y hacer algo con el.
+
+```javascript
+Promise.all([ buscarHeroe( heroeId1 ), buscarHeroe( heroeId2 ) ])
+    .then( ([heroe1, heroe2]) => {
+        console.log(`Enviando a ${heroe1.nombre} y ${heroe2.nombre} a la batalla!!!`);
+    })
+    .catch( err => {
+        alert(err);
+    });
+```
+
+Si le pasamos a una función un argumento no valido, por ejemplo, un id que no existe, entonces el método `catch` nos devolverá un error, es importante saber que si algo de lo que se encuentra dentro del array falla, no se ejecutará nada de lo que esté en el `then`, ese código solo se va a ejecutar si todas las promesas se resuelven de manera exitosa.
