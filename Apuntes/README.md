@@ -2353,3 +2353,29 @@ export const obtenerHeroeAwait = async ( id ) => {
 
 ## For await, if await
 
+```javascript
+export const heroesCiclo = async () => {
+
+    console.time('Heroes Ciclo')
+
+    for await (const heroe of heroesPromesas) {
+        console.log(heroe);
+    }
+
+    // const heroes = await Promise.all( heroesPromesas );
+
+    // heroes.forEach( heroe => console.log(heroe) );
+
+    console.timeEnd('Heroes Ciclo')
+}
+
+export const heroeIfAwait = async ( id ) => {
+
+    if ( (await buscarHeroeAsync(id)).nombre === 'Ironman') {
+        console.log('Es el mejor de todos');
+    } else {
+        console.log('Naah');
+    }
+
+}
+```
