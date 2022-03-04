@@ -2268,3 +2268,59 @@ export const obtenerHeroesArr = async () => {
 Por ejemplo, en la función anterior estamos usando también la función `buscarHeroeAsync` la cual es una función asíncrona, por lo que necesitamos esperar a que se resuelva la promesa para poder continuar con el código, de lo contrario cuando tratemos de imprimir el array de heroes no nos devolvería ninguno, ya que no sabemos cuando se resolverá la promesa.
 
 Este tipo de características hay que usarlas sabiamente, porque puede que una función tarde mucho en resolverse y el await esperará hasta que este listo, esto puede hacer que nuestra aplicación se sienta lenta.
+
+## Mejorar el uso del await
+
+No es recomendable usar el `await` dentro de un ciclo for, ya que en cada iteración del ciclo se esperara la respuesta, esto puede hacer que nuestra aplicación sea más lenta.
+
+```javascript
+  import { buscarHeroeAsync, buscarHeroe } from "./promesas";
+
+
+
+const heroesIds = ['capi', 'iron', 'spider'];
+
+export const obtenerHeroesArr = async () => {
+
+    const heroesArr = [];
+
+    for (const id of heroesIds) {
+        heroesArr.push(buscarHeroe(id));
+        
+    }
+
+    return await Promise.all(heroesArr);
+}
+```
+
+```javascript
+export const buscarHeroe = ( id ) => {
+
+    const heroe = heroes[id];
+
+    return new Promise( ( resolve, reject ) => {
+
+        if ( heroe ) {
+
+            setTimeout(() => resolve(heroe), 1000);
+
+        } else {
+            reject( `No existe un hero con el id: ${id}` ); 
+        }
+
+    });
+
+}
+```
+
+Una forma mas elegante de hacerlo es la siguiente:
+
+```javascript
+import { buscarHeroe } from "./promesas";
+
+export const obtenerHeroesArr = async () => {
+  return await Promise.all(heroesIds.map( buscarHeroe ));
+}
+```
+
+El método `map` de los arrays nos permite iterar sobre un array y aplicar una función a cada elemento del array, en este caso es la función `buscarHeroe`, la cual es una promesa, por lo que necesitamos esperar a que se resuelva para poder continuar con el código, es por eso que se la pasamos a la función `Promise.all` para que se resuelva todas las promesas y con el await esperamos a que estén todas listas para devolverlas con el return.
