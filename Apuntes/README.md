@@ -2379,3 +2379,66 @@ export const heroeIfAwait = async ( id ) => {
 
 }
 ```
+
+## Peticiones http - Fetch - Get
+
+Para hacer peticiones http a un hosting y traer información de el usamos el método `fetch`, el cual es un método propio de JavaScript.
+
+Por ejemplo, para hacer una petición Get a una api:
+
+```javascript
+const jokeUrl = 'https://api.chucknorris.io/jokes/random';
+
+fetch( jokeUrl ).then ( resp => {
+
+    resp.json().then( ({ id, value }) => {
+        console.log( id );
+        console.log( value );
+    });
+
+})
+```
+
+Una forma mas fácil y elegante de hacer lo anterior es la siguiente:
+
+```javascript
+fetch ( jokeUrl )
+  .then( res => res.json())
+  .then( ({id, value}) => {
+    console.log(id, value);
+  });
+```
+
+## Centralizar las peticiones HTTP
+
+Usualmente tenemos centralizado el lugar donde realizamos las peticiones, por que por lo general necesitaremos reutilizar ese código muchas veces. Para esto usamos un `provider` en donde centralizamos toda la lógica de las peticiones.
+
+```javascript
+const jokeUrl = 'https://api.chucknorris.io/jokes/random';
+
+
+const obtenerChiste = async () => {
+
+    try {
+    
+        const res = await fetch( jokeUrl );
+
+        if (!res.ok) { throw 'No se puedo realizar la petición' };
+
+        const { icon_url, id, value } = await res.json();
+
+        return { icon_url, id, value };
+
+    } catch (err) {
+       
+        throw err;
+
+    }   
+
+}
+
+
+export {
+    obtenerChiste,
+}
+```
