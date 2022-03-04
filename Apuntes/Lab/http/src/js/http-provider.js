@@ -1,6 +1,10 @@
 const jokeUrl       = 'https://api.chucknorris.io/jokes/random';
 const urlUsuarios   = 'https://reqres.in/api/users?page=2';
 
+// Cloudinary
+const cloudPreset = 'xxxxxxx';
+const cloudUrl    = 'xxxxxxx';
+
 const obtenerChiste = async () => {
 
     try {
@@ -29,8 +33,36 @@ const obtenerUsuarios = async () => {
 
 }
 
+const subirImagen = async ( img ) => {
+
+    const formData = new FormData();
+    formData.append('upload_preset', cloudPreset);
+    formData.append('file', img);
+
+    try {
+        
+        const res = await fetch( cloudUrl, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (res.ok) {
+            const cloudRes = await res.json();
+            console.log(cloudRes);
+            // return
+        } else {
+            throw await res.json();
+        }
+
+    } catch (err) {
+        throw err;
+    }
+
+}
+
 
 export {
     obtenerChiste,
     obtenerUsuarios,
+    subirImagen
 }
