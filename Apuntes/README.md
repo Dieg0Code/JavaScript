@@ -2324,3 +2324,32 @@ export const obtenerHeroesArr = async () => {
 ```
 
 El método `map` de los arrays nos permite iterar sobre un array y aplicar una función a cada elemento del array, en este caso es la función `buscarHeroe`, la cual es una promesa, por lo que necesitamos esperar a que se resuelva para poder continuar con el código, es por eso que se la pasamos a la función `Promise.all` para que se resuelva todas las promesas y con el await esperamos a que estén todas listas para devolverlas con el return.
+
+## Manejo de errores en el await
+
+Una mejor forma de manejar los errores en el await es usando un `try` y `catch`:
+
+```javascript
+export const obtenerHeroeAwait = async ( id ) => {
+
+  try {
+
+    const heroe = await buscarHeroeAsync(id); 
+    return heroe;
+
+  } catch (err) {
+
+    console.log('Catch!!');
+        
+    return {
+      nombre: 'No encontrado',
+      poder: 'No encontrado'
+    }
+
+  }
+
+}
+```
+
+## For await, if await
+
