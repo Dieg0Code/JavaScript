@@ -2228,4 +2228,43 @@ export const buscarHeroeAsync = async ( id ) => {
 }
 ```
 
+```javascript
+buscarHeroe('capi')
+    .then( heroe => console.log(heroe) )
+    .catch( err => console.warn(err) );
+
+buscarHeroeAsync('iron')
+    .then( heroe => console.log(heroe) )
+    .catch( err => console.warn(err) );
+```
+
 El async toma una función y hace que lo que retorna sea una promesa, es decir, su ``resolve`` es el valor que tiene en el ``return``, y en lugar de poner el ``reject`` usamos el ``throw``.
+
+## Await
+
+El `await` es una palabra reservada que nos permite esperar a que una promesa se resuelva antes de continuar con el código.
+
+```javascript	
+import { buscarHeroeAsync } from "./promesas";
+
+
+
+const heroesIds = ['capi', 'iron', 'spider'];
+
+export const obtenerHeroesArr = async () => {
+
+    const heroesArr = [];
+
+    for (const id of heroesIds) {
+        const heroe = await buscarHeroeAsync(id);
+        heroesArr.push(heroe);
+    }
+
+    return heroesArr;
+
+}
+```
+
+Por ejemplo, en la función anterior estamos usando también la función `buscarHeroeAsync` la cual es una función asíncrona, por lo que necesitamos esperar a que se resuelva la promesa para poder continuar con el código, de lo contrario cuando tratemos de imprimir el array de heroes no nos devolvería ninguno, ya que no sabemos cuando se resolverá la promesa.
+
+Este tipo de características hay que usarlas sabiamente, porque puede que una función tarde mucho en resolverse y el await esperará hasta que este listo, esto puede hacer que nuestra aplicación se sienta lenta.
