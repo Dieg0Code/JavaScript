@@ -2209,3 +2209,23 @@ Promise.race([ promesaLenta, promesaMedia, promesaRapida ])
 ```
 
 Si bien las otras promesas se intentaron ejecutar, no fueron mas veloces, es por eso que el único mensaje que tenemos es el de la "Promesa Rápida". También hay que decir que si alguna de las promesas diera un error, JavaScript va a ignorar esa promesa, pero si la que falla es la promesa más rápida entonces si devolvería su error.
+
+## Async
+
+El `async` nos permite convertir una función en una promesa, su sintaxis es mas simple que las promesas tradicionales.
+
+```javascript
+export const buscarHeroeAsync = async ( id ) => {
+
+    const heroe = heroes[id];
+
+    if ( heroe ) {
+        return heroe;
+    } else {
+        throw Error(`No existe un hero con el id: ${id}`); 
+    }
+
+}
+```
+
+El async toma una función y hace que lo que retorna sea una promesa, es decir, su ``resolve`` es el valor que tiene en el ``return``, y en lugar de poner el ``reject`` usamos el ``throw``.
