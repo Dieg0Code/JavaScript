@@ -2164,3 +2164,48 @@ Promise.all([ buscarHeroe( heroeId1 ), buscarHeroe( heroeId2 ) ])
 ```
 
 Si le pasamos a una función un argumento no valido, por ejemplo, un id que no existe, entonces el método `catch` nos devolverá un error, es importante saber que si algo de lo que se encuentra dentro del array falla, no se ejecutará nada de lo que esté en el `then`, ese código solo se va a ejecutar si todas las promesas se resuelven de manera exitosa.
+
+## Promise.race
+
+El Promise.race nos permite ejecutar todas las promesas en conjunto y obtener el mensaje de la promesa que se resuelve mas rápido.
+
+Por ejemplo tengo un conjunto de promesas:
+
+```javascript
+const promesaLenta = new Promise( (resolve, reject) => {
+
+    setTimeout(() => resolve('Promesa Lenta'), 2000);
+
+});
+
+const promesaMedia = new Promise( (resolve, reject) => {
+
+    setTimeout(() => resolve('Promesa Media'), 1500);
+
+});
+
+const promesaRapida = new Promise( (resolve, reject) => {
+
+    setTimeout(() => resolve('Promesa Rápida'), 1000);
+
+});
+```
+
+Y las ejecuto:
+
+```javascript
+promesaLenta.then( console.log )
+promesaMedia.then( console.log )
+promesaRapida.then( console.log )
+```
+
+Se ejecutan en el siguiente orden: "Promesa Rápida", "Promesa Media", "Promesa Lenta".
+
+Pero si las ejecuto con el `Promise.race` solo se ejecutaría la "Promesa Rápida":
+
+```javascript
+Promise.race([ promesaLenta, promesaMedia, promesaRapida ])
+    .then( console.log )
+```
+
+Si bien las otras promesas se intentaron ejecutar, no fueron mas veloces, es por eso que el único mensaje que tenemos es el de la "Promesa Rápida". También hay que decir que si alguna de las promesas diera un error, JavaScript va a ignorar esa promesa, pero si la que falla es la promesa más rápida entonces si devolvería su error.
